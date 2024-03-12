@@ -1,6 +1,7 @@
 module Oxidized
   require "oxidized/input/cli"
   require "net/http"
+  require "net/http/digest_auth"
   require "json"
 
   class HTTP < Input
