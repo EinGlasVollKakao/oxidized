@@ -57,8 +57,8 @@ module Oxidized
       res = make_request(uri, ssl_verify)
 
       if res.code == '401' && res['www-authenticate']&.include?('Digest')
-        uri.user = @username
-        uri.password = @password
+        uri.user = URI.encode_www_form_component @username
+        uri.password = URI.encode_www_form_component @password
         Oxidized.logger.debug "Server requires Digest authentication"
         auth = Net::HTTP::DigestAuth.new.auth_header(uri, res['www-authenticate'], 'GET')
 
